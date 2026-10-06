@@ -1,0 +1,170 @@
+/*
+Theme Name: Bloom
+Theme URI: https://github.com/Nourhb/bloom-kindergarten-theme
+Author: Nour El Houda Bouajila
+Author URI: https://nour-el-houda-bouajila.rf.gd/
+Description: Bloom is a joyful Full Site Editing theme crafted for kindergartens, preschools, and kids gardens. Sunny colors, playful rounded type, sticker-style badges, and ready-made patterns for programs, teachers, galleries, events, and enrollment — everything a little school needs to shine online.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.9
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: bloom
+Tags: blog, education, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, block-styles, threaded-comments, translation-ready, wide-blocks, one-column, two-columns
+*/
+
+/*
+ * Bloom — front-end only styles.
+ * The design system (colors, fonts, spacing) lives in theme.json.
+ * These rules cover polish that theme.json cannot: bouncy hovers,
+ * sticker rotations, marquee, wave dividers, entrance animations.
+ */
+
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+::selection { background: var(--wp--preset--color--sunny); color: var(--wp--preset--color--ink); }
+
+a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* Accessible focus */
+a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+	outline: 3px solid var(--wp--preset--color--sky);
+	outline-offset: 3px;
+	border-radius: 6px;
+}
+
+/* Screen reader text */
+.screen-reader-text {
+	border: 0; clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%);
+	height: 1px; margin: -1px; overflow: hidden; padding: 0;
+	position: absolute !important; width: 1px; word-wrap: normal !important;
+}
+.skip-link:focus {
+	clip: auto !important; clip-path: none; height: auto; width: auto;
+	background: var(--wp--preset--color--sunny); color: var(--wp--preset--color--ink);
+	padding: .8rem 1.2rem; border-radius: 0 0 1rem 1rem; z-index: 100000;
+	font-weight: 700; text-decoration: none; left: 1rem; top: 0;
+}
+
+/* ---------- Bouncy buttons ---------- */
+.wp-block-button__link {
+	transition: transform .25s cubic-bezier(.34, 1.8, .64, 1), box-shadow .25s ease;
+}
+.wp-block-button__link:hover {
+	transform: translateY(-3px) rotate(-1deg) scale(1.03);
+	box-shadow: 0 10px 24px -8px rgba(46, 42, 38, .35);
+}
+.wp-block-button__link:active { transform: translateY(0) scale(.98); }
+
+/* ---------- Sticker badges ---------- */
+.bloom-sticker {
+	display: inline-block;
+	transform: rotate(-4deg);
+	transition: transform .3s cubic-bezier(.34, 1.8, .64, 1);
+}
+.bloom-sticker:hover { transform: rotate(3deg) scale(1.08); }
+.bloom-sticker-alt { transform: rotate(4deg); }
+.bloom-sticker-alt:hover { transform: rotate(-3deg) scale(1.08); }
+
+/* ---------- Cards ---------- */
+.bloom-card {
+	transition: transform .3s cubic-bezier(.34, 1.56, .64, 1), box-shadow .3s ease;
+}
+.bloom-card:hover {
+	transform: translateY(-8px) rotate(-.5deg);
+	box-shadow: 0 24px 48px -16px rgba(46, 42, 38, .22);
+}
+
+/* ---------- Gallery zoom ---------- */
+.bloom-zoom img {
+	transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+}
+.bloom-zoom:hover img { transform: scale(1.08) rotate(.5deg); }
+
+/* ---------- Marquee ---------- */
+.bloom-marquee { overflow: hidden; white-space: nowrap; }
+.bloom-marquee-track {
+	display: inline-flex; gap: 2.5rem; padding-right: 2.5rem;
+	animation: bloom-marquee 22s linear infinite;
+}
+.bloom-marquee:hover .bloom-marquee-track { animation-play-state: paused; }
+@keyframes bloom-marquee {
+	from { transform: translateX(0); }
+	to { transform: translateX(-50%); }
+}
+
+/* ---------- Entrance animations ---------- */
+.bloom-rise { opacity: 0; transform: translateY(36px); }
+.bloom-rise.bloom-in {
+	opacity: 1; transform: none;
+	transition: opacity .7s ease, transform .7s cubic-bezier(.22, 1, .36, 1);
+}
+.bloom-pop { opacity: 0; transform: scale(.85); }
+.bloom-pop.bloom-in {
+	opacity: 1; transform: none;
+	transition: opacity .5s ease, transform .6s cubic-bezier(.34, 1.8, .64, 1);
+}
+.bloom-delay-1 { transition-delay: .12s; }
+.bloom-delay-2 { transition-delay: .24s; }
+.bloom-delay-3 { transition-delay: .36s; }
+
+/* ---------- Floating badges ---------- */
+@keyframes bloom-float {
+	0%, 100% { transform: translateY(0) rotate(-4deg); }
+	50% { transform: translateY(-12px) rotate(2deg); }
+}
+.bloom-float { animation: bloom-float 5s ease-in-out infinite; }
+.bloom-float-slow { animation: bloom-float 7.5s ease-in-out infinite; animation-delay: 1.2s; }
+
+/* ---------- Wiggle on hover for icons ---------- */
+@keyframes bloom-wiggle {
+	0%, 100% { transform: rotate(0); }
+	25% { transform: rotate(-8deg); }
+	75% { transform: rotate(8deg); }
+}
+.bloom-wiggle:hover { animation: bloom-wiggle .5s ease-in-out; }
+
+/* ---------- Back to top ---------- */
+.bloom-top {
+	position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 999;
+	width: 3.25rem; height: 3.25rem; border-radius: 50%;
+	background: var(--wp--preset--color--coral); color: #fff;
+	border: none; cursor: pointer; font-size: 1.4rem; line-height: 1;
+	box-shadow: 0 12px 28px -8px rgba(255, 107, 107, .6);
+	opacity: 0; transform: translateY(16px) scale(.8); pointer-events: none;
+	transition: opacity .3s ease, transform .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+.bloom-top.bloom-show { opacity: 1; transform: none; pointer-events: auto; }
+.bloom-top:hover { transform: translateY(-4px) rotate(-8deg) scale(1.06); }
+
+/* ---------- Stat numbers ---------- */
+.bloom-stat-num { font-variant-numeric: tabular-nums; }
+
+/* ---------- Dotted leaders for event rows ---------- */
+.bloom-dots { border-bottom: 3px dotted rgba(46, 42, 38, .25); }
+
+/* ---------- List markers ---------- */
+.bloom-list li::marker, ul.bloom-list li::marker { color: var(--wp--preset--color--coral); }
+
+/* ---------- Table polish ---------- */
+.wp-block-table.is-style-bloom-soft table { border-collapse: separate; border-spacing: 0; }
+.wp-block-table.is-style-bloom-soft tbody tr:nth-child(odd) { background: rgba(255, 201, 60, .12); }
+.wp-block-table.is-style-bloom-soft th {
+	background: var(--wp--preset--color--sky); color: #fff; border-radius: .75rem;
+}
+
+/* ---------- Print ---------- */
+@media print {
+	.bloom-top, .bloom-marquee { display: none !important; }
+	body { background: #fff; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	*, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+	.bloom-rise, .bloom-pop { opacity: 1; transform: none; }
+	.bloom-marquee-track { animation: none; white-space: normal; }
+}
