@@ -1,0 +1,19 @@
+/*
+ * Bloom — editor styles.
+ * Keeps the block editor canvas warm and readable.
+ */
+
+body {
+	font-family: "Quicksand", "Segoe UI", system-ui, sans-serif;
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4 {
+	font-family: "Baloo 2", "Comic Sans MS", "Chalkboard SE", cursive;
+}
+
+.editor-styles-wrapper .wp-block-button__link {
+	border-radius: 999px;
+}

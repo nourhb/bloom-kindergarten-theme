@@ -1,0 +1,5 @@
+# Bloom theme — ignore build/OS noise.
+.DS_Store
+Thumbs.db
+node_modules/
+*.log
